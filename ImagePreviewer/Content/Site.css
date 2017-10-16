@@ -1,0 +1,100 @@
+﻿*{
+    margin:0px;
+    padding:0px;
+    border:0px;
+    outline:0px;
+}
+body {
+    background:#e7e7e7;  
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    /*padding-left: 15px;
+    padding-right: 15px;*/
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    /*white-space: normal;*/
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    /*max-width: 280px;*/
+}
+
+.form-control
+{
+    width:90%;
+    margin-left: 15px;
+}
+
+.thumb img { 
+      filter: none; /* IE6-9 */ 
+      -webkit-filter: grayscale(0); 
+
+      padding:5px; 
+    } 
+    .thumb img:hover { 
+      filter: gray; /* IE6-9 */ 
+      -webkit-filter: grayscale(1); 
+    } 
+    .thumb { 
+      padding:5px; 
+    } 
+
+.container-fluid{
+    
+} 
+
+.thumb{
+    text-align: center;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.modal.in .modal-dialog{
+    width:750px;
+}
+
+#btn{
+    padding: 6px 6px;
+}
+
+#dropArea{
+        background:#b5b5b5;
+        border:black dashed 1px;
+        height:50px;
+        text-align:center;
+        color:#fff;
+        padding-top:12px;
+    }
+    .active-drop{
+        background:#77bafa !important;
+        border:solid 2px blue !important;
+        opacity:.5;
+        color:black !important;
+    }

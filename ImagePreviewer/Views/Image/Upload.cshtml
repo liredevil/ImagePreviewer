@@ -1,0 +1,108 @@
+﻿@model ImagePreviewer.Models.ImageModel
+
+@{
+    ViewBag.Title = "Upload";
+    Layout = null;
+}
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" area-hidden="true">x</button>
+        <h4>ADD IMAGE</h4>
+    </div>
+    @using (Html.BeginForm("Upload", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <img id="blah" alt="" height="195" />
+                    <div id="dropArea">
+                        Drop your files here
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Title)
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description)
+                        @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextArea("results", null, new {rows = 5, id = "results", @class= "form-control" })
+                        <div id="results "></div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" id="getTag" />                            
+                    </div>
+                    <input type="button" id="addTag" value="addTag" class="btn btn-primary" />
+                    @*@Html.Partial("AddTag")*@
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <label class="btn btn-primary btn-file">
+                    add image <input type="file" name="file" accept="image/x-png,image/jpeg" style="display: none; "
+                                     onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                </label>
+                <input type="submit" value="Publish" class="btn btn-primary" />
+            </div>
+
+        </div>
+    }
+
+</div>
+<script src="~/Scripts/jquery.filedrop.js"></script>
+@*@Scripts.Render("~/Scripts/main2.js")*@
+
+
+
+<script type="text/javascript">
+    {
+        $(document).ready(function () {
+            $('#addTag').click(function () {
+                var name = $('#getTag').val();
+                $('#results').load('@Url.Action("AddTag", "Image")?name=' + name)
+            });
+        });
+
+        $(function () {
+            $('#dropArea').filedrop({
+                url: '@Url.Action("Drag", "Image")',
+                allowedfiletypes: ['image/jpeg', 'image/png', 'image/gif'],
+                allowedfileextensions: ['.jpg', '.jpeg', '.png', '.gif'],
+                paramname: 'files',
+                maxfiles: 1,
+                maxfilesize: 5, // in MB
+                dragOver: function () {
+                    $('#dropArea').addClass('active-drop');
+                },
+                dragLeave: function () {
+                    $('#dropArea').removeClass('active-drop');
+                },
+                drop: function () {
+                    $('#dropArea').removeClass('active-drop');
+                },
+                afterAll: function (e) {
+                    $('#dropArea').html('file(s) uploaded successfully');
+                },
+                uploadFinished: function (i, file, response, time) {
+                    $('#uploadList').append('<li class="list-group-item">' + file.name + '</li>')
+                }
+            })
+
+        })
+        
+
+
+    }
+
+
+</script>
+
+
