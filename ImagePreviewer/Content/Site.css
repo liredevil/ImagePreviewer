@@ -98,3 +98,31 @@ textarea {
         opacity:.5;
         color:black !important;
     }
+
+.file_upload {
+  position: relative;
+
+  overflow: hidden;
+ 
+  background: #eee;
+  border: 1px solid #ccc;
+  font-size: 20px;
+  line-height: 1;
+  text-align: center;
+  padding: 20px;
+  margin-top: 1px;
+  width: 350px;
+}
+ 
+.file_upload input[type=file] {
+  position: absolute;
+  top: 0; right: 0;
+ 
+  font-size: 200px;
+ 
+  opacity: 0;
+  filter: alpha(opacity=0);
+ 
+  cursor: pointer;
+}
+

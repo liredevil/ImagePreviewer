@@ -1,5 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="bootstrap.min.js" />
+/// <reference path="dropzone/dropzone.min.js" />
+/// <reference path="dropzone/dropzone-amd-module.min.js" />
 /// <reference path="jquery.fancybox.js" />
 /// <reference path="jquery.fancybox.pack.js" />
 /// <reference path="jquery.fancybox-buttons.js" />

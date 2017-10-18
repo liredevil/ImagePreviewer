@@ -174,27 +174,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="logic\FileUpload.cs" />
-    <Compile Include="Migrations\201709251415400_SampleMigrations.cs" />
-    <Compile Include="Migrations\201709251415400_SampleMigrations.Designer.cs">
-      <DependentUpon>201709251415400_SampleMigrations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709301125065_SampleMigrations1.cs" />
-    <Compile Include="Migrations\201709301125065_SampleMigrations1.Designer.cs">
-      <DependentUpon>201709301125065_SampleMigrations1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710041505213_SampleMigrations2.cs" />
-    <Compile Include="Migrations\201710041505213_SampleMigrations2.Designer.cs">
-      <DependentUpon>201710041505213_SampleMigrations2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710080909568_SampleMigrations3.cs" />
-    <Compile Include="Migrations\201710080909568_SampleMigrations3.Designer.cs">
-      <DependentUpon>201710080909568_SampleMigrations3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710161606366_SampleMigrations4.cs" />
-    <Compile Include="Migrations\201710161606366_SampleMigrations4.Designer.cs">
-      <DependentUpon>201710161606366_SampleMigrations4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUserManager.cs" />
     <Compile Include="Models\EFDbContext.cs" />
     <Compile Include="Models\ImageModel.cs" />
@@ -274,6 +253,14 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\dropzone\basic.css" />
+    <Content Include="Scripts\dropzone\basic.min.css" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.js" />
+    <Content Include="Scripts\dropzone\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\dropzone\dropzone.css" />
+    <Content Include="Scripts\dropzone\dropzone.js" />
+    <Content Include="Scripts\dropzone\dropzone.min.css" />
+    <Content Include="Scripts\dropzone\dropzone.min.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
@@ -324,23 +311,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709251415400_SampleMigrations.resx">
-      <DependentUpon>201709251415400_SampleMigrations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709301125065_SampleMigrations1.resx">
-      <DependentUpon>201709301125065_SampleMigrations1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710041505213_SampleMigrations2.resx">
-      <DependentUpon>201710041505213_SampleMigrations2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710080909568_SampleMigrations3.resx">
-      <DependentUpon>201710080909568_SampleMigrations3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710161606366_SampleMigrations4.resx">
-      <DependentUpon>201710161606366_SampleMigrations4.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Product_Images\" />

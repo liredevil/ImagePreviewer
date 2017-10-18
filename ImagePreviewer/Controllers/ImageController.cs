@@ -78,8 +78,7 @@ namespace ImagePreviewer.Controllers
         [HttpPost]
         public ActionResult Drag(HttpPostedFileBase file)
         {
-            string filePath = Guid.NewGuid() + Path.GetExtension(file.FileName);
-            file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), filePath));            
+            file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), file.FileName));            
 
             return Json("file uploaded successfully");
         }

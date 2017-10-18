@@ -10,14 +10,18 @@
         <button class="close" data-dismiss="modal" area-hidden="true">x</button>
         <h4>ADD IMAGE</h4>
     </div>
-    @using (Html.BeginForm("Upload", "Image", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Upload", "Image", FormMethod.Post, new { @class="dropzone", enctype = "multipart/form-data" }))
     {
         <div class="modal-body">
             <div class="row">
                 <div class="col-md-6">
-                    <img id="blah" alt="" height="195" />
-                    <div id="dropArea">
-                        Drop your files here
+                    <img id="imagePreview" alt="" width="350" height="195" />
+                    <div class="file_upload">
+                        select or drag image
+                        <div class="fallback">
+                            <input name="file" type="file" multipleaccept="image/x-png,image/jpeg " style="display: inline-block;"
+                                             onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])" />
+                        </div>
                     </div>
                 </div>
 
@@ -46,18 +50,12 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <label class="btn btn-primary btn-file">
-                    add image <input type="file" name="file" accept="image/x-png,image/jpeg" style="display: none; "
-                                     onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
-                </label>
                 <input type="submit" value="Publish" class="btn btn-primary" />
             </div>
-
         </div>
     }
-
 </div>
-<script src="~/Scripts/jquery.filedrop.js"></script>
+
 @*@Scripts.Render("~/Scripts/main2.js")*@
 
 
@@ -70,36 +68,6 @@
                 $('#results').load('@Url.Action("AddTag", "Image")?name=' + name)
             });
         });
-
-        $(function () {
-            $('#dropArea').filedrop({
-                url: '@Url.Action("Drag", "Image")',
-                allowedfiletypes: ['image/jpeg', 'image/png', 'image/gif'],
-                allowedfileextensions: ['.jpg', '.jpeg', '.png', '.gif'],
-                paramname: 'files',
-                maxfiles: 1,
-                maxfilesize: 5, // in MB
-                dragOver: function () {
-                    $('#dropArea').addClass('active-drop');
-                },
-                dragLeave: function () {
-                    $('#dropArea').removeClass('active-drop');
-                },
-                drop: function () {
-                    $('#dropArea').removeClass('active-drop');
-                },
-                afterAll: function (e) {
-                    $('#dropArea').html('file(s) uploaded successfully');
-                },
-                uploadFinished: function (i, file, response, time) {
-                    $('#uploadList').append('<li class="list-group-item">' + file.name + '</li>')
-                }
-            })
-
-        })
-        
-
-
     }
 
 
