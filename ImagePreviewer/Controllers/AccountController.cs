@@ -105,7 +105,9 @@ namespace ImagePreviewer.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = await UserManager.FindAsync(model.Email, model.Password);
+                var email = await UserManager.FindByEmailAsync(model.Email);
+
+                ApplicationUser user = await UserManager.FindAsync(email.UserName, model.Password);
                 if (user == null)
                 {
                     ModelState.AddModelError("", "Неверный Email или пароль.");

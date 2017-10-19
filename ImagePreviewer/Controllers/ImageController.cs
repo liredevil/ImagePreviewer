@@ -74,15 +74,5 @@ namespace ImagePreviewer.Controllers
 
             return RedirectToAction("index");
         }
-
-        [HttpPost]
-        public ActionResult Drag(HttpPostedFileBase file)
-        {
-            file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), file.FileName));            
-
-            return Json("file uploaded successfully");
-        }
-
-
     }
 }
