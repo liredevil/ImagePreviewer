@@ -174,6 +174,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="logic\FileUpload.cs" />
+    <Compile Include="Migrations\201710161731031_InitialCreate.cs" />
+    <Compile Include="Migrations\201710161731031_InitialCreate.Designer.cs">
+      <DependentUpon>201710161731031_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710200037512_SampleMigrations.cs" />
+    <Compile Include="Migrations\201710200037512_SampleMigrations.Designer.cs">
+      <DependentUpon>201710200037512_SampleMigrations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUserManager.cs" />
     <Compile Include="Models\EFDbContext.cs" />
     <Compile Include="Models\ImageModel.cs" />
@@ -188,6 +197,8 @@
     <Content Include="App_Data\ImagePreviewerDb_log.ldf">
       <DependentUpon>ImagePreviewerDb.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap-tagsinput-typeahead.css" />
+    <Content Include="Content\bootstrap-tagsinput.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -250,8 +261,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\bootstrap-tagsinput-angular.js" />
+    <Content Include="Scripts\bootstrap-tagsinput-angular.min.js" />
+    <Content Include="Scripts\bootstrap-tagsinput.js" />
+    <Content Include="Scripts\bootstrap-tagsinput.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrap-tagsinput.min.js.map" />
+    <Content Include="Scripts\bootstrap-tagsinput-angular.min.js.map" />
+    <Content Include="Content\bootstrap-tagsinput.less" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\dropzone\basic.css" />
     <Content Include="Scripts\dropzone\basic.min.css" />
@@ -306,7 +324,6 @@
     <Content Include="Views\Image\Upload.cshtml" />
     <Content Include="Views\Home\_Items.cshtml" />
     <Content Include="Views\Image\AddTag.cshtml" />
-    <Content Include="Views\Image\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -315,6 +332,14 @@
   <ItemGroup>
     <Folder Include="Content\Product_Images\" />
     <Folder Include="UploadedFiles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710161731031_InitialCreate.resx">
+      <DependentUpon>201710161731031_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710200037512_SampleMigrations.resx">
+      <DependentUpon>201710200037512_SampleMigrations.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

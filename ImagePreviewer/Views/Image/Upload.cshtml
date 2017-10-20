@@ -27,26 +27,19 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Title)
+                        @Html.Label("Name your media")
                         @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Description)
+                        @Html.Label("Add Description")
                         @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
                     </div>
 
                     <div class="form-group">
-                        @Html.TextArea("results", null, new {rows = 5, id = "results", @class= "form-control" })
-                        <div id="results "></div>
-                        
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="name" class="form-control" id="getTag" />                            
-                    </div>
-                    <input type="button" id="addTag" value="addTag" class="btn btn-primary" />
-                    @*@Html.Partial("AddTag")*@
-                    
+                        @Html.Label("Add Tags")
+                        <select name="tags" id="addTag" multiple data-role="tagsinput"></select>
+                    </div>            
                 </div>
             </div>
             <div class="modal-footer">
@@ -56,21 +49,10 @@
     }
 </div>
 
-@*@Scripts.Render("~/Scripts/main2.js")*@
-
-
+@*@Scripts.Render("~/Scripts/main.js")*@
 
 <script type="text/javascript">
-    {
-        $(document).ready(function () {
-            $('#addTag').click(function () {
-                var name = $('#getTag').val();
-                $('#results').load('@Url.Action("AddTag", "Image")?name=' + name)
-            });
-        });
-    }
-
-
+    $('#addTag').tagsinput('items')
 </script>
 
 

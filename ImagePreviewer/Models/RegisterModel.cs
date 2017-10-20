@@ -10,22 +10,20 @@ namespace ImagePreviewer.Models
     {
         [Required]
         [RegularExpression(@"^[a-zA-Z][a-zA-Z]{1,20}$", ErrorMessage = "Поле Логин должно содержать только буквы A-Z")]
-        [Display(Name = "Логин")]
+        [Display(Name = "Login")]
         public string UserName { get; set; }
 
         [Required]
         [EmailAddress]
-        [Display(Name = "Адрес электронной почты")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [DataType(DataType.Password)]
         [Required]
-        [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
-        [Display(Name = "Пароль")]
+        [RegularExpression(@"^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$", ErrorMessage = "password - required, at least 6 characters long,at least one lowercase letter, one uppercase letter, one digit")]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение пароля")]
+        [Display(Name = "Return Password")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string RetypePassword { get; set; }
     }

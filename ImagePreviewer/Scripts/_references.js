@@ -1,5 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="bootstrap.min.js" />
+/// <reference path="bootstrap-tagsinput.min.js" />
+/// <reference path="bootstrap-tagsinput-angular.min.js" />
 /// <reference path="dropzone/dropzone.min.js" />
 /// <reference path="dropzone/dropzone-amd-module.min.js" />
 /// <reference path="jquery.fancybox.js" />

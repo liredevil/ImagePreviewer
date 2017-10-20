@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace ImagePreviewer.Models
 {
@@ -11,7 +12,9 @@ namespace ImagePreviewer.Models
     {
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string Description { get; set; }
 
         [HiddenInput(DisplayValue = false)]

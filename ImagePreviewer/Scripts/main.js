@@ -51,50 +51,32 @@ $(function () {
     });
 })
 
-$('#addTag').click(function () {
-    var name = $('#tag').val();
-    $('#tag').empty();
-    //addTag(name);
-});
+//$('#addTag').click(function () {
+//    var name = $('#tag').val();
+//    $('#tag').empty();
+//    //addTag(name);
+//});
 
 
-function AddTag(name) {
-    $.ajax({
-        type: 'POST',
-        url: '/Image/AddTag/' + name,
-        success: function (data) {
-            var $select = $('#results');
-            $select.empty();
-            $('#results').html(data);
-        }
+//function AddTag(name) {
+//    $.ajax({
+//        type: 'POST',
+//        url: '/Image/AddTag/' + name,
+//        success: function (data) {
+//            var $select = $('#results');
+//            $select.empty();
+//            $('#results').html(data);
+//        }
+//    });
+//}
+
+$(document).ready(function () {
+    $('#addTag').click(function () {
+        var name = $('#getTag').val();
+        name = encodeURIComponent(name);
+        $('#results').load('@Url.Action("AddTag", "Image")?name=' + name)
     });
-}
-
-$(function () {
-    $('#dropArea').filedrop({
-        url: '@Url.Action("UploadFile")',
-        allowedfiletypes: ['image/jpeg', 'image/png', 'image/gif'],
-        allowedfileextensions: ['.jpg', '.jpeg', '.png', '.gif'],
-        paramname: 'files',
-        maxfiles: 1,
-        maxfilesize: 5, // in MB
-        dragOver: function () {
-            $('#dropArea').addClass('active-drop');
-        },
-        dragLeave: function () {
-            $('#dropArea').removeClass('active-drop');
-        },
-        drop: function () {
-            $('#dropArea').removeClass('active-drop');
-        },
-        afterAll: function (e) {
-            $('#dropArea').html('file(s) uploaded successfully');
-        },
-        uploadFinished: function (i, file, response, time) {
-            $('#uploadList').append('<li class="list-group-item">' + file.name + '</li>')
-        }
-    })
-})
+});
 
 
 

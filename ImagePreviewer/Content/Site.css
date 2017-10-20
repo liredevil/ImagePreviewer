@@ -110,7 +110,7 @@ textarea {
   line-height: 1;
   text-align: center;
   padding: 20px;
-  margin-top: 1px;
+  margin-top: 0px;
   width: 350px;
 }
  
@@ -125,4 +125,16 @@ textarea {
  
   cursor: pointer;
 }
+
+.bootstrap-tagsinput{
+    display:block;
+    width: 296px;
+    margin-left: 15px;
+}
+
+label{
+    margin-left:15px;
+}
+
+
 

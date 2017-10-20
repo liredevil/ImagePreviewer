@@ -12,6 +12,7 @@ namespace ImagePreviewer.Models
         public string Email { get; set; }
 
         [Required]
+        [RegularExpression(@"^(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$", ErrorMessage = "password - required, at least 6 characters long,at least one lowercase letter, one uppercase letter, one digit")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
