@@ -2,11 +2,9 @@
 using System.Web;
 using System.Web.Mvc;
 using ImagePreviewer.Models;
-using ImagePreviewer.logic;
 using System.IO;
 using System.Linq;
 using Microsoft.AspNet.Identity;
-using System;
 
 namespace ImagePreviewer.Controllers
 {
@@ -14,13 +12,6 @@ namespace ImagePreviewer.Controllers
     public class ImageController : Controller
     {
         private EFDbContext db = new EFDbContext();
-
-        
-
-        public ImageController()
-        {
-
-        }
 
         public ActionResult Index()
         {
@@ -30,14 +21,13 @@ namespace ImagePreviewer.Controllers
 
         public ActionResult Upload()
         {
-
             return View();
         }
 
         [HttpPost]
         public ActionResult Upload(ImageModel image, HttpPostedFileBase file,List<string> tags)
-        {
-            if(ModelState.IsValid)
+        {            
+            if (ModelState.IsValid)
             {
                 string fileName = image.Title + ".jpg";
                 
@@ -57,22 +47,11 @@ namespace ImagePreviewer.Controllers
                     {
                         tagModel = new TagModel();
                         imageTagModel = new ImageTagModel();
-                        //IEnumerable<TagModel> chekSameField = db.Tag.Where(g => g.TagTitle == item);
-                        //if (db.Tag.Count() == 0)
-                        //{
-                        //    tagModel.TagTitle = item;
-                        //    db.Tag.Add(tagModel);
-                        //    db.SaveChanges();
-                        //}
-                        //foreach (var q in chekSameField)
-                        //{
-                        //    if (item.ToString() != q.TagTitle)
-                        //    {
-                                tagModel.TagTitle = tag;
-                                db.Tag.Add(tagModel);
-                                db.SaveChanges();
-                        //    }
-                        //}
+
+                        tagModel.TagTitle = tag;
+                        db.Tag.Add(tagModel);
+                        db.SaveChanges();
+ 
 
                         IEnumerable<TagModel> getTagId = db.Tag.Where(g => g.TagTitle == tag);
                         foreach (var item in getTagId)
@@ -92,6 +71,13 @@ namespace ImagePreviewer.Controllers
                 }
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        private string GetConfigSection() {
+           var config = (CustomConfiguration.ImageSection)System.Configuration.ConfigurationManager
+                .GetSection("imageSettingsGroup/imageSettings");
+
+            return config.Image.Directory;
         }
     }
 }

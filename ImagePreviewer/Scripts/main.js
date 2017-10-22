@@ -51,32 +51,9 @@ $(function () {
     });
 })
 
-//$('#addTag').click(function () {
-//    var name = $('#tag').val();
-//    $('#tag').empty();
-//    //addTag(name);
-//});
 
 
-//function AddTag(name) {
-//    $.ajax({
-//        type: 'POST',
-//        url: '/Image/AddTag/' + name,
-//        success: function (data) {
-//            var $select = $('#results');
-//            $select.empty();
-//            $('#results').html(data);
-//        }
-//    });
-//}
 
-$(document).ready(function () {
-    $('#addTag').click(function () {
-        var name = $('#getTag').val();
-        name = encodeURIComponent(name);
-        $('#results').load('@Url.Action("AddTag", "Image")?name=' + name)
-    });
-});
 
 
 

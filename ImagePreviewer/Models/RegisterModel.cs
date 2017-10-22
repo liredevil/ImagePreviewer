@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ImagePreviewer.Models
 {
     public class RegisterModel
     {
         [Required]
-        [RegularExpression(@"^[a-zA-Z][a-zA-Z]{1,20}$", ErrorMessage = "Поле Логин должно содержать только буквы A-Z")]
+        [RegularExpression(@"^[a-zA-Z][a-zA-Z]{1,20}$", ErrorMessage = "username - required, only a-z or A-Z characters")]
         [Display(Name = "Login")]
         public string UserName { get; set; }
 
@@ -24,7 +20,7 @@ namespace ImagePreviewer.Models
         public string Password { get; set; }
 
         [Display(Name = "Return Password")]
-        [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
+        [Compare("Password", ErrorMessage = "The password and its confirmation do not match.")]
         public string RetypePassword { get; set; }
     }
 }

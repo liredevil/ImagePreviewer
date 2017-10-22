@@ -58,7 +58,7 @@ namespace ImagePreviewer.Controllers
         }
         
 
-       [HttpPost]
+        [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterModel model)
@@ -110,7 +110,7 @@ namespace ImagePreviewer.Controllers
                 ApplicationUser user = await UserManager.FindAsync(email.UserName, model.Password);
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "Неверный Email или пароль.");
+                    ModelState.AddModelError("", "Wrong Email or Password.");
                 }
                 else
                 {

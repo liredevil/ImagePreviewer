@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -9,6 +6,7 @@ using Microsoft.Owin;
 using System.Threading.Tasks;
 using System.Security.Claims;
 using Microsoft.Owin.Security;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace ImagePreviewer.Models
@@ -61,6 +59,26 @@ namespace ImagePreviewer.Models
         public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
         {
             return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
+        }
+
+        public class ImageTitelAttribute : ValidationAttribute
+        {
+            EFDbContext db = new EFDbContext();
+
+            public override bool IsValid(object value)
+            {
+                if (value != null)
+                {
+                    string titel = value.ToString();
+                    var getTitelList = db.Image.Select(g => g.Title);
+                    foreach(var item in getTitelList)
+                    {
+                        if (titel == item)
+                            return true;
+                    }
+                }
+                return false;
+            }
         }
     }
 }
