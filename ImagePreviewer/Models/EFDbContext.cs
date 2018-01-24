@@ -28,7 +28,9 @@ namespace ImagePreviewer.Models
         public DbSet<TagModel> Tag { get; set; }
         public DbSet<ImageTagModel> ImageTag { get; set; }
         public EFDbContext() : base("DBConnection")
-        { }
+        {
+            Database.SetInitializer(new CreateDatabaseIfNotExists<EFDbContext>());
+        }
         
         public static EFDbContext Create()
         {
