@@ -17,6 +17,7 @@ namespace ImagePreviewer.Models
             : base(store)
         {
         }
+
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
                                                 IOwinContext context)
         {

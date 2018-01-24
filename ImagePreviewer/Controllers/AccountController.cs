@@ -106,6 +106,13 @@ namespace ImagePreviewer.Controllers
             if (ModelState.IsValid)
             {
                 var email = await UserManager.FindByEmailAsync(model.Email);
+                if(email == null)
+                {
+                    ModelState.AddModelError("", "Wrong Email or Password.");
+
+                    ViewBag.returnUrl = returnUrl;
+                    return View(model);
+                }
 
                 ApplicationUser user = await UserManager.FindAsync(email.UserName, model.Password);
                 if (user == null)
@@ -126,6 +133,8 @@ namespace ImagePreviewer.Controllers
                     return Redirect(returnUrl);
                 }
             }
+            else
+                ModelState.AddModelError("", "Wrong Email or Password.");
             ViewBag.returnUrl = returnUrl;
             return View(model);
         }

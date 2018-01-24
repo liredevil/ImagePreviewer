@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -184,10 +185,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ImagePreviewerDb.mdf" />
-    <Content Include="App_Data\ImagePreviewerDb_log.ldf">
-      <DependentUpon>ImagePreviewerDb.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-tagsinput-typeahead.css" />
     <Content Include="Content\bootstrap-tagsinput.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -322,6 +319,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Content\Product_Images\" />
     <Folder Include="UploadedFiles\" />
   </ItemGroup>
