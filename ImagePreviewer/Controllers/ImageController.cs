@@ -24,7 +24,7 @@ namespace ImagePreviewer.Controllers
         [HttpPost]
         public ActionResult Upload(Image image, HttpPostedFileBase file, List<string> tags)
         {
-            if (ModelState.IsValid && CheckUserName(image) == false)
+            if (ModelState.IsValid && CheckImageTitle(image) == false)
             {
                 string fileName = image.Title + ".jpg";
 
@@ -72,7 +72,7 @@ namespace ImagePreviewer.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public bool CheckUserName(Image image)
+        private bool CheckImageTitle(Image image)
         {
             var result = db.Image.Where(r => r.Title == (image.Title + ".jpg")).ToList();
 

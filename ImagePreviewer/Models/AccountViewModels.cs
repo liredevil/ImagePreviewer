@@ -21,6 +21,11 @@ namespace ImagePreviewer.Models
     public class RegisterViewModel
     {
         [Required]
+        [RegularExpression(@"^[a-zA-Z][a-zA-Z]{1,20}$", ErrorMessage = "username - required, only a-z or A-Z characters")]
+        [Display(Name = "Login")]
+        public string UserName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "EmailAddress")]
         public string Email { get; set; }
