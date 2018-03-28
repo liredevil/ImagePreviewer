@@ -1,0 +1,16 @@
+﻿@*@model IEnumerable<ImagePreviewer.Models.ImageTag>*@
+@using ImagePreviewer.Models;
+@model IEnumerable<ImageTag>
+@{
+    ViewBag.Title = "SearchOnTag";
+}
+<div class="row">
+    @foreach (ImageTag path in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-6 thumb">
+            <a data-fancybox="gallery" href="/UploadedFiles/@path.Image.Title">
+                <img class="img-fluid" src="/UploadedFiles/@path.Image.Title" alt="...">
+            </a>
+        </div>
+    }
+</div>

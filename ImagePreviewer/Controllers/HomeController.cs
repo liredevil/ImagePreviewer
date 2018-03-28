@@ -1,37 +1,23 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
-using ImagePreviewer.Models;
+﻿using ImagePreviewer.Models;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.IO;
+using System.Web;
+using System.Web.Mvc;
 
 namespace ImagePreviewer.Controllers
 {
     public class HomeController : Controller
     {
-        private EFDbContext db = new EFDbContext();
-
-        const int imageCount = 11;
+        static ApplicationDbContext db = new ApplicationDbContext();
+        IEnumerable<Tag> tags = db.Tag;
+        const int imageCount = 13;
 
         public ActionResult Index(int? id)
         {
             int page = id ?? 0;
 
             ViewBag.ImagePathes = GetItemsPage(page);
-
-            if (Request.IsAjaxRequest())
-            {                
-                return PartialView("_Items");
-            }
-            
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult SearchOnTag(string tag, int? id)
-        {
-            int page = id ?? 0;
-
-            ViewBag.ImagePathes = GetItemsPage2(tag);
 
             if (Request.IsAjaxRequest())
             {
@@ -45,7 +31,7 @@ namespace ImagePreviewer.Controllers
         {
             int itemsToSkip = pageNumber * imageCount;
 
-            return BildImagePathGroup().Skip(itemsToSkip).Take(imageCount).ToList();            
+            return BildImagePathGroup().Skip(itemsToSkip).Take(imageCount).ToList();
         }
 
         private IEnumerable<string> BildImagePathGroup()
@@ -53,19 +39,20 @@ namespace ImagePreviewer.Controllers
             return db.Image.Select(p => "/UploadedFiles/" + p.Title);
         }
 
-
-
-        private IEnumerable<string> GetItemsPage2(string tag)
+        public ActionResult AutocompleteSearch(string term)
         {
-            int pageNumber = 1;
-            int itemsToSkip = pageNumber * imageCount;
+            var models = tags.Where(a => a.TagTitle.Contains(term))
+                            .Select(a => new { value = a.TagTitle })
+                            .Distinct();
 
-            return BildImagePathGroup2(tag).Skip(itemsToSkip).Take(imageCount).ToList();
+            return Json(models, JsonRequestBehavior.AllowGet);
         }
 
-        private IEnumerable<string> BildImagePathGroup2(string tag)
+        public ActionResult SearchOnTag(string tag)
         {
-            return db.ImageTag.Where(p => p.Tag.TagTitle == tag).Select(p => "/UploadedFiles/" + p.Image.Title);
+            IEnumerable<ImageTag> resultSeratching = db.ImageTag.Where(r => r.Tag.TagTitle == tag).ToList();
+    
+            return View(resultSeratching);
         }
     }
 }

@@ -1,36 +1,42 @@
-﻿using System.Collections.Generic;
-using System.Web;
-using System.Web.Mvc;
-using ImagePreviewer.Models;
+﻿using ImagePreviewer.Models;
+using Microsoft.AspNet.Identity;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Microsoft.AspNet.Identity;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ImagePreviewer.Controllers
 {
-    [Authorize]
     public class ImageController : Controller
     {
-        private EFDbContext db = new EFDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ActionResult Index()
         {
-            
             return View();
         }
-
         public ActionResult Upload()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Upload(ImageModel image, HttpPostedFileBase file,List<string> tags)
-        {            
+        public ActionResult Upload(Image image, HttpPostedFileBase file, List<string> tags)
+        {
+            //var result = db.Image.Where(r => r.Title == (image.Title + ".jpg")).ToList();
+
+            //if (result.Count > 0)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
             if (ModelState.IsValid)
             {
                 string fileName = image.Title + ".jpg";
-                
+
                 file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), fileName));
 
                 image.Title = fileName;
@@ -39,27 +45,27 @@ namespace ImagePreviewer.Controllers
                 db.Image.Add(image);
                 db.SaveChanges();
 
-                TagModel tagModel;
-                ImageTagModel imageTagModel;
-                if (tags != null) 
+                Tag tagModel;
+                ImageTag imageTagModel;
+                if (tags != null)
                 {
                     foreach (var tag in tags)
                     {
-                        tagModel = new TagModel();
-                        imageTagModel = new ImageTagModel();
+                        tagModel = new Tag();
+                        imageTagModel = new ImageTag();
 
                         tagModel.TagTitle = tag;
                         db.Tag.Add(tagModel);
                         db.SaveChanges();
- 
 
-                        IEnumerable<TagModel> getTagId = db.Tag.Where(g => g.TagTitle == tag);
+
+                        IEnumerable<Tag> getTagId = db.Tag.Where(g => g.TagTitle == tag);
                         foreach (var item in getTagId)
                         {
                             imageTagModel.TagId = item.Id;
                         }
 
-                        IEnumerable<ImageModel> getImageId = db.Image.Where(g => g.Title == fileName);
+                        IEnumerable<Image> getImageId = db.Image.Where(g => g.Title == fileName);
                         foreach (var item in getImageId)
                         {
                             imageTagModel.ImageId = item.Id;
@@ -73,11 +79,10 @@ namespace ImagePreviewer.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        private string GetConfigSection() {
-           var config = (CustomConfiguration.ImageSection)System.Configuration.ConfigurationManager
-                .GetSection("imageSettingsGroup/imageSettings");
-
-            return config.Image.Directory;
+        public JsonResult CheckUserName(string Title)
+        {
+            //var result = Membership.FindUsersByName(Title).Count == 0;
+            return Json(!db.Image.Any(x => x.Title == Title), JsonRequestBehavior.AllowGet);
         }
     }
 }

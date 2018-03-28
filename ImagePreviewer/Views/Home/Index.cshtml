@@ -1,31 +1,22 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
-<div class="row">
+<div class="row" id="scrolList">
     @if (User.Identity.IsAuthenticated)
     {
-        <div class="col-md-3 col-sm-4 col-xs-6 thumb">
-            <a class="compItem" href='@Url.Action("Upload", "Image")'>
-                <img src='@Url.Content("~/Content/Product_Images/add-button-inside-black-circle.jpg")' height="180" />
+        <div class="col-lg-3 col-md-4 col-6">
+            <a class="showElement" href='@Url.Action("Upload", "Image")'>
+                <img src="~/Content/Product_Images/add-button-inside-black-circle.jpg" alt="..." height="180" />
             </a>
-
         </div>
-
     }
-
-    <div id="scrolList">
-        @Html.Partial("_Items")
-    </div>
+    @Html.Partial("_Items")
+    @*<div id="scrolList">
+            @Html.Partial("_Items")
+      </div>*@
 </div>
 <div id="loading"><img src='@Url.Content("~/Content/Spinner.gif")'></div>
 
 <div id="modDialog" class="modal fade">
     <div id="dialogContent" class="modal-dialog"></div>
-</div>  
-
-
-
-
-
-
+</div>

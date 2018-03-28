@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ImagePreviewer")]
-[assembly: AssemblyCopyright("© , 2017")]
+[assembly: AssemblyCopyright("© , 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для ID библиотеки типов typelib, если этот проект видим для COM
-[assembly: Guid("e16a9e6a-09df-4b45-ba42-466b91a57272")]
+[assembly: Guid("f711f8c2-ef72-4c14-938e-06ed9b534905")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
