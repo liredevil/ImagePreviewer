@@ -18,7 +18,6 @@ namespace ImagePreviewer
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Подключите здесь службу электронной почты для отправки сообщения электронной почты.
             return Task.FromResult(0);
         }
     }
@@ -27,7 +26,7 @@ namespace ImagePreviewer
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Подключите здесь службу SMS, чтобы отправить текстовое сообщение.
+
             return Task.FromResult(0);
         }
     }
@@ -43,14 +42,14 @@ namespace ImagePreviewer
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
-            // Настройка логики проверки имен пользователей
+            // Configuring the logic for verifying usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
 
-            // Настройка логики проверки паролей
+            // Configuring the password verification logic
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
@@ -60,7 +59,7 @@ namespace ImagePreviewer
                 RequireUppercase = true,
             };
 
-            // Настройка параметров блокировки по умолчанию
+            // Set default lock options
             manager.UserLockoutEnabledByDefault = true;
             manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
             manager.MaxFailedAccessAttemptsBeforeLockout = 5;
@@ -88,7 +87,7 @@ namespace ImagePreviewer
         }
     }
 
-    // Настройка диспетчера входа для приложения.
+    // Configuring the Login Manager for the application.
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)

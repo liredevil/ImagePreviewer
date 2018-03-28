@@ -69,6 +69,14 @@ namespace ImagePreviewer.Controllers
                 return View(model);
             }
             var getUserByEmail = await UserManager.FindByEmailAsync(model.Email);
+            if (getUserByEmail == null)
+            {
+                ModelState.AddModelError("", "Wrong Email or Password.");
+                ViewBag.returnUrl = returnUrl;
+
+                return View(model);
+            }
+
             var result = await SignInManager.PasswordSignInAsync(getUserByEmail.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
@@ -80,7 +88,7 @@ namespace ImagePreviewer.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Неудачная попытка входа.");
+                    ModelState.AddModelError("", "Unsuccessful login attempt.");
                     return View(model);
             }
         }
