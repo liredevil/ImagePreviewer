@@ -24,14 +24,7 @@ namespace ImagePreviewer.Controllers
         [HttpPost]
         public ActionResult Upload(Image image, HttpPostedFileBase file, List<string> tags)
         {
-            //var result = db.Image.Where(r => r.Title == (image.Title + ".jpg")).ToList();
-
-            //if (result.Count > 0)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
-
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && CheckUserName(image) == false)
             {
                 string fileName = image.Title + ".jpg";
 
@@ -73,14 +66,22 @@ namespace ImagePreviewer.Controllers
                         db.SaveChanges();
                     }
                 }
+                TempData["message"] = string.Format("picture successful added");
             }
+
             return RedirectToAction("Index", "Home");
         }
 
-        public JsonResult CheckUserName(string Title)
+        public bool CheckUserName(Image image)
         {
-            //var result = Membership.FindUsersByName(Title).Count == 0;
-            return Json(!db.Image.Any(x => x.Title == Title), JsonRequestBehavior.AllowGet);
+            var result = db.Image.Where(r => r.Title == (image.Title + ".jpg")).ToList();
+
+            if (result.Count > 0)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }

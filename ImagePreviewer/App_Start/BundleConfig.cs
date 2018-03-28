@@ -15,7 +15,8 @@ namespace ImagePreviewer
                         "~/Scripts/popper.min.js",///fancybox
                         "~/Scripts/DragAndDrop.js",
                         "~/Scripts/AutocompleteSearch.js",
-                        "~/Scripts/ModalDialog.js"));
+                        "~/Scripts/ModalDialog.js",
+                        "~/Scripts/main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

@@ -10,6 +10,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet">
 </head>
 <body>
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success" id="success-alert">@TempData["message"]</div>
+    }
     <div class="container">
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             @Html.ActionLink("Image Previewer", "Index", "Home", new { @class = "navbar-brand" })
