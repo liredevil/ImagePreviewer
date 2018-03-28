@@ -24,7 +24,8 @@ namespace ImagePreviewer.Controllers
         [HttpPost]
         public ActionResult Upload(Image image, HttpPostedFileBase file, List<string> tags)
         {
-            if (ModelState.IsValid && CheckImageTitle(image) == false)
+            CheckImageTitle(image);
+            if (ModelState.IsValid)
             {
                 string fileName = image.Title + ".jpg";
 
@@ -68,20 +69,22 @@ namespace ImagePreviewer.Controllers
                 }
                 TempData["message"] = string.Format("picture successful added");
             }
-
             return RedirectToAction("Index", "Home");
         }
 
-        private bool CheckImageTitle(Image image)
+        private Image CheckImageTitle(Image image)
         {
             var result = db.Image.Where(r => r.Title == (image.Title + ".jpg")).ToList();
+            int count = 1;
 
             if (result.Count > 0)
             {
-                return true;
+                image.Title+= count;
+
+                return image;
             }
 
-            return false;
+            return image;
         }
     }
 }
