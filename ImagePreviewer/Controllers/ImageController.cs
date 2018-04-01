@@ -28,7 +28,7 @@ namespace ImagePreviewer.Controllers
             if (ModelState.IsValid)
             {
                 string fileName = image.Title + ".jpg";
-
+                
                 file.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), fileName));
 
                 image.Title = fileName;
@@ -75,7 +75,7 @@ namespace ImagePreviewer.Controllers
         private Image CheckImageTitle(Image image)
         {
             var result = db.Image.Where(r => r.Title == (image.Title + ".jpg")).ToList();
-            int count = 1;
+            int count = 0;
 
             if (result.Count > 0)
             {
